@@ -40,15 +40,16 @@ public class RandomMapGeneratorEditor : Editor
         int gridSize = 9;
 
         GUILayout.BeginVertical(EditorStyles.helpBox);
-        for (int z = 0; z < gridSize; z++)
+        for (int x = 0; x < gridSize; x++)
         {
             GUILayout.BeginHorizontal();
-            for (int x = 0; x < gridSize; x++)
+            for (int z = 0; z < gridSize; z++)
             {
                 int value = grid[x, z]; // Get the value from the grid
 
                 // Set different colors based on the value
                 Color blockColor = GetBlockColor(value);
+                //EditorGUILayout.LabelField(grid[x, z].ToString(), GUILayout.Width(20));
 
                 // Draw block
                 EditorGUI.DrawRect(GUILayoutUtility.GetRect(cellSize, cellSize), blockColor);
@@ -57,9 +58,15 @@ public class RandomMapGeneratorEditor : Editor
         }
         GUILayout.EndVertical();
     }
-
     private Color GetBlockColor(int value)
     {
+        Random.InitState(value);
+        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+    }
+    /*
+    private Color GetBlockColor(int value)
+    {
+    
         // Set different colors based on the value
         // Example: Assign different colors for different values
         switch (value)
@@ -74,6 +81,6 @@ public class RandomMapGeneratorEditor : Editor
             default:
                 return Color.gray; // Use default color for other values
         }
-    }
+    }*/
 }
 #endif

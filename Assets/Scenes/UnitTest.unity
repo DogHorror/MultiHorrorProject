@@ -379,9 +379,9 @@ MonoBehaviour:
   - {fileID: 1710809953009628654, guid: 3ff9ac50bf103964db18fb8c67963cc9, type: 3}
   roomList: []
   roomCount: 0
-  roomWidth: 11
+  roomWidth: 10
   roomHeight: 4
-  roomDepth: 11
+  roomDepth: 10
 --- !u!4 &985176663
 Transform:
   m_ObjectHideFlags: 0

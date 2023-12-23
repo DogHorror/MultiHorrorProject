@@ -245,7 +245,7 @@ public class RandomMapGenerator : MonoBehaviour
                 int width = 1;
                 int height = 1;
 
-                roomList.Add(CreateRoom(grid, i, 1, j));
+                roomList.Add(CreateRoom(grid, i, 0, j));
             }
         }
         
