@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -5,6 +6,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
+[Serializable]
 public struct Grid
 {
     public int x;
@@ -63,14 +65,14 @@ public class RandomMapGenerator : MonoBehaviour
         int width = 1;
         int height = 1;
 
-        List<Grid> checker;
+        List<Grid> shape = new List<Grid>();
 
         Degree degree;
 
         int flag = -1;
         do
         {
-            checker = new List<Grid>();
+            shape.Clear();
             degree = (Degree)Random.Range(0, 4);
             switch (Random.Range(0, 4))
             {
@@ -79,7 +81,7 @@ public class RandomMapGenerator : MonoBehaviour
                     height = 1;
                     flag = 0;
                     
-                    checker.Add(new Grid(0,0,0));
+                    shape.Add(new Grid(0,0,0));
                     break;
                 case 1:
                     if (degree == Degree.d0 || degree == Degree.d180)
@@ -88,8 +90,8 @@ public class RandomMapGenerator : MonoBehaviour
                         height = 1;
                         flag = 1;
                     
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(1,0,0));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(1,0,0));
                     }
                     else
                     {
@@ -97,8 +99,8 @@ public class RandomMapGenerator : MonoBehaviour
                         height = 2;
                         flag = 1;
                     
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(0,0,1));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(0,0,1));
                     }
                     break;
                 case 2:
@@ -106,10 +108,10 @@ public class RandomMapGenerator : MonoBehaviour
                     height = 2;
                     flag = 2;
                         
-                    checker.Add(new Grid(0,0,0));
-                    checker.Add(new Grid(1,0,0));
-                    checker.Add(new Grid(0,0,1));
-                    checker.Add(new Grid(1,0,1));
+                    shape.Add(new Grid(0,0,0));
+                    shape.Add(new Grid(1,0,0));
+                    shape.Add(new Grid(0,0,1));
+                    shape.Add(new Grid(1,0,1));
                     break;
                 case 3:
                     if (degree == Degree.d0)
@@ -119,9 +121,9 @@ public class RandomMapGenerator : MonoBehaviour
                         flag = 3;
 
                         
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(1,0,0));
-                        checker.Add(new Grid(0,0,1));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(1,0,0));
+                        shape.Add(new Grid(0,0,1));
                     }
                     else if(degree == Degree.d90)
                     {
@@ -130,9 +132,9 @@ public class RandomMapGenerator : MonoBehaviour
                         flag = 3;
                         
                         
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(0,0,1));
-                        checker.Add(new Grid(1,0,1));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(0,0,1));
+                        shape.Add(new Grid(1,0,1));
                     }
                     else if(degree == Degree.d180)
                     {
@@ -140,9 +142,9 @@ public class RandomMapGenerator : MonoBehaviour
                         height = 2;
                         flag = 3;
 
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(1,0,0));
-                        checker.Add(new Grid(1,0,-1));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(1,0,0));
+                        shape.Add(new Grid(1,0,-1));
                     }
                     else
                     {
@@ -150,9 +152,9 @@ public class RandomMapGenerator : MonoBehaviour
                         height = 2;
                         flag = 3;
 
-                        checker.Add(new Grid(0,0,0));
-                        checker.Add(new Grid(1,0,0));
-                        checker.Add(new Grid(1,0,1));
+                        shape.Add(new Grid(0,0,0));
+                        shape.Add(new Grid(1,0,0));
+                        shape.Add(new Grid(1,0,1));
                     }
 
                     break;
@@ -160,23 +162,21 @@ public class RandomMapGenerator : MonoBehaviour
                     width = 1;
                     height = 1;
                     
-                    checker.Add(new Grid(0,0,0));
+                    shape.Add(new Grid(0,0,0));
                     break;
             }
-        } while (!canPlaceRoom(grid, checker, x, z));
+        } while (!canPlaceRoom(grid, shape, x, z));
 
         if (flag == -1) return null;
 
-        for (int i = 0; i < checker.Count; i++)
+        for (int i = 0; i < shape.Count; i++)
         {
-            grid[x + checker[i].x, z + checker[i].z] = roomCount;
+            grid[x + shape[i].x, z + shape[i].z] = roomCount;
         }
 
         GameObject roomPrefab;
         Vector3 roomPosition = new Vector3(x * roomWidth + roomWidth / 2, y * roomHeight + roomHeight / 2, z * roomDepth + roomDepth / 2);
         Quaternion roomRotation = Quaternion.identity;
-        
-        
         
         switch (flag)
         {
@@ -215,8 +215,9 @@ public class RandomMapGenerator : MonoBehaviour
                 break;
         }
 
-
-        Room room = new Room(roomPrefab, roomCount++, x, y, z, width, height, 1);
+        Room room = roomPrefab.GetComponent<Room>();
+        room.Init(roomCount++, shape, x, y, z, roomWidth, roomHeight, roomDepth);
+        room.CreateWallUsingGrid(grid);
         return room;
     }
 
@@ -245,7 +246,9 @@ public class RandomMapGenerator : MonoBehaviour
                 int width = 1;
                 int height = 1;
 
-                roomList.Add(CreateRoom(grid, i, 0, j));
+                Room room = CreateRoom(grid, i, 0, j);
+                
+                roomList.Add(room);
             }
         }
         

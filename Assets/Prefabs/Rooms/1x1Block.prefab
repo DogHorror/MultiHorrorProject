@@ -107,6 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5026855089552208786}
+  - component: {fileID: 7182285768412414060}
   m_Layer: 0
   m_Name: 1x1Block
   m_TagString: Untagged
@@ -131,6 +132,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7182285768412414060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4851152859733458797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21b451d7d9cca14a972d7e6139b793c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallPrefabList:
+  - {fileID: 1670282197675198613, guid: 899ab9144bcc590478687fa134537537, type: 3}
+  windowPrefabList:
+  - {fileID: 2877949980760806325, guid: 6a0fecde80c4dc540bc9df40aac41edb, type: 3}
+  doorPrefabList:
+  - {fileID: 4961239225882985702, guid: 32a28952683e6284e8e5f022f724528c, type: 3}
+  id: 0
+  gridX: 0
+  gridY: 0
+  gridZ: 0
+  width: 0
+  height: 0
+  depth: 0
+  wallList: []
+  shape: []
+  adjacentRoomNumbers: 
 --- !u!1 &7347306586953756475
 GameObject:
   m_ObjectHideFlags: 0
