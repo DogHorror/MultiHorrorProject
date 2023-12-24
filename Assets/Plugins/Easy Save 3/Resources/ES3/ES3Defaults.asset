@@ -32,6 +32,15 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - FizzySteamworks
+    - kcp2k
+    - Mirror
+    - Mirror.Authenticators
+    - Mirror.Components
+    - Mirror.Examples
+    - Mirror.Transports
+    - SimpleWebTransport
+    - Telepathy
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
