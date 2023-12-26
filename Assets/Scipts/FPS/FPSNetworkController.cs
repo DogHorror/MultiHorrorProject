@@ -61,7 +61,7 @@ namespace Demo.Scripts.Runtime
         [SerializeField] private Vector2 freeLookAngle;
 
         [Header("Movement")] 
-        [SerializeField] private FPSMovement movementComponent;
+        [SerializeField] private FPSNetworkMovement movementComponent;
         
         [SerializeField] [Tab("Weapon")] 
         private List<Weapon> weapons;
@@ -116,9 +116,12 @@ namespace Demo.Scripts.Runtime
 
         private void Start()
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
             moveRotation = transform.rotation;
 
-            movementComponent = GetComponent<FPSMovement>();
+            movementComponent = GetComponent<FPSNetworkMovement>();
             
             movementComponent.onStartMoving.AddListener(OnMoveStarted);
             movementComponent.onStopMoving.AddListener(OnMoveEnded);

@@ -2050,7 +2050,7 @@ PrefabInstance:
     - target: {fileID: -4396642182433536433, guid: 3e9b79cc78043e245a3687dba16fc172,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4396642182433536433, guid: 3e9b79cc78043e245a3687dba16fc172,
         type: 3}
@@ -3922,6 +3922,23 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &6520993946472201820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040180637916172480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 7886602484316440375}
 --- !u!114 &7886602484316440362
 MonoBehaviour:
   m_ObjectHideFlags: 0
