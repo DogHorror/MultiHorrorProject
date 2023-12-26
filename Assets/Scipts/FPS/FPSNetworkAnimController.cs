@@ -1,4 +1,5 @@
-// Designed by KINEMATION, 2023
+using System.Collections;
+using System.Collections.Generic;
 
 using Kinemation.FPSFramework.Runtime.Camera;
 using Kinemation.FPSFramework.Runtime.Core.Components;
@@ -10,12 +11,14 @@ using Kinemation.FPSFramework.Runtime.Recoil;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Mirror;
+
 
 namespace Kinemation.FPSFramework.Runtime.FPSAnimator
 {
     // Animation Controller Interface
     // Make sure to derive your controller from this class
-    public abstract class FPSAnimController : MonoBehaviour
+    public abstract class FPSNetworkAnimController : NetworkBehaviour
     {
         private CoreAnimComponent fpsAnimator;
         private FPSCamera fpsCamera;
