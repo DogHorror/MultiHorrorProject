@@ -21,7 +21,7 @@ namespace Kinemation.FPSFramework.Runtime.FPSAnimator
     public abstract class FPSNetworkAnimController : NetworkBehaviour
     {
         private CoreAnimComponent fpsAnimator;
-        private FPSCamera fpsCamera;
+        private FPSNetworkCamera fpsCamera;
         protected RecoilAnimation recoilComponent;
         protected CharAnimData charAnimData;
         
@@ -47,7 +47,7 @@ namespace Kinemation.FPSFramework.Runtime.FPSAnimator
             recoilComponent = GetComponentInChildren<RecoilAnimation>();
             charAnimData = new CharAnimData();
 
-            fpsCamera = GetComponentInChildren<FPSCamera>();
+            fpsCamera = GetComponentInChildren<FPSNetworkCamera>();
             internalLookLayer = GetComponentInChildren<LookLayer>();
             internalAdsLayer = GetComponentInChildren<AdsLayer>();
 

@@ -7,6 +7,7 @@ using Kinemation.FPSFramework.Runtime.Core.Playables;
 using System;
 using System.Collections.Generic;
 using Kinemation.FPSFramework.Runtime.Core.Jobs;
+using Mirror;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
@@ -214,7 +215,7 @@ namespace Kinemation.FPSFramework.Runtime.Core.Components
     }
     
     [ExecuteInEditMode, AddComponentMenu("FPS Animator")]
-    public class CoreAnimComponent : MonoBehaviour
+    public class CoreAnimComponent : NetworkBehaviour
     {
         public UnityEvent onPreUpdate;
         public UnityEvent onPostUpdate;
@@ -409,6 +410,8 @@ namespace Kinemation.FPSFramework.Runtime.Core.Components
                 return;
             }
 #endif
+
+            if (!isLocalPlayer) return;
             onPreUpdate.Invoke();
             PreUpdateLayers();
             
