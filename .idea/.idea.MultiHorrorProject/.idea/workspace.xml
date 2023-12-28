@@ -3,32 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="94aab5a4-9213-4078-83d2-a6058604983b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/Demo/Character/Animations/IKRigAnimator_Generic.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/Demo/Character/Animations/IKRigAnimator_Generic.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/Demo/Prefabs/Humanoid/PlayerCharacter_Humanoid.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/Demo/Prefabs/Humanoid/PlayerCharacter_Humanoid.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Editor/FPSAF.Editor.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Editor/FPSAF.Editor.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Runtime/Core/Components/CoreAnimComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Runtime/Core/Components/CoreAnimComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Runtime/FPSAF.Runtime.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/FPSFramework/Runtime/FPSAF.Runtime.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/PlayerCharacter_TFP_Network.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/PlayerCharacter_TFP_Network.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkAnimController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkAnimController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/FPS/FPSNetworkMovement.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Network.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Network/MyNetworkRoomManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/Network/MyNetworkRoomManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/RandomMapGenerator.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/RandomMapGenerator/RandomMapGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/RandomMapGenerator/RandomMapGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/RandomMapGenerator/Room.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/RandomMapGenerator/Room.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/SteamNetwork.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/SteamNetwork/SteamLobby.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scipts/SteamNetwork/SteamLobby.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +14,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69c0ac029a6e4a708e1f794f9c0582a327000/7e/1a3bf0e4/AnimatorController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69c0ac029a6e4a708e1f794f9c0582a327000/c7/dc342a5f/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8117508d098d40e7b6cab2e14abb2fdc81fa00/df/2eb03517/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/afb51423a29947c09a21689e8d96b70a1a000/d6/9a964125/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/MapGeneratorEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Character/Core/FPSController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkAnimEventReceiver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkAnimator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkCamera.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,6 +47,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/멀티빌드\MultiHorrorProject.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Home\Desktop\멀티빌드" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath F:\MultiHorrorProject -debugCodeOptimization" />
@@ -122,6 +107,7 @@
       <workItem from="1703426065567" duration="620000" />
       <workItem from="1703485173536" duration="2435000" />
       <workItem from="1703575326248" duration="3497000" />
+      <workItem from="1703777136873" duration="12445000" />
     </task>
     <servers />
   </component>
