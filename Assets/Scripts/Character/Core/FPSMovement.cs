@@ -50,10 +50,9 @@ public class FPSMovement : NetworkBehaviour
     public Vector3 MoveVector { get; private set; }
     
     [Header("Character Settings")]
-    public float crouchRatio;
+    public float crouchRatio = 0.5f;
     
     public Transform rootBone;
-
     
     private PlayerInput playerInput;
     private CharacterController controller;
@@ -85,6 +84,7 @@ public class FPSMovement : NetworkBehaviour
     
     private void Update()
     {
+        if (!isLocalPlayer) return;
         var prevState = movementState;
         UpdateMovementState();
         UpdatePoseState();
@@ -208,7 +208,7 @@ public class FPSMovement : NetworkBehaviour
         desiredVelocity *= desiredGait;
 
         desiredVelocity = Vector3.Lerp(velocity, desiredVelocity, 1 - Mathf.Exp(-velocitySmoothing * Time.deltaTime));
-            
+
         velocity = desiredVelocity;
 
         desiredVelocity.y = -gravity;
