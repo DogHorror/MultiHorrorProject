@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RayInteractor : NetworkBehaviour
 {
@@ -9,15 +10,11 @@ public class RayInteractor : NetworkBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private List<RayInteractable> interactables = new List<RayInteractable>();
-    [SerializeField] private int checkPerFrame = 3;
-    [SerializeField] private float interactRange = 10f;
 
     
     [Header("UI Settings")] 
     [SerializeField] private RectTransform handCursor;
     
-    private int tick = 0;
-
     public void Start()
     {
         handCursor = UIManager.instance.handCursor;
@@ -25,35 +22,50 @@ public class RayInteractor : NetworkBehaviour
     
     public void Update()
     {
-        tick++;
-        if (handCursor && tick > checkPerFrame)
+        RayInteractable element = GetClosestElementOnCamera();
+        if (element)
         {
-            tick = 0;
-            RayInteractable element = GetClosestElementOnCamera();
-            if (element)
+            if (isLocalPlayer)
             {
-                if (isLocalPlayer && !UIManager.instance.camera) UIManager.instance.camera = camera;
+                if (!UIManager.instance.camera)
+                {
+                    UIManager.instance.camera = camera;
+                }
+                UIManager.instance.promptMessage.enabled = true;
+                UIManager.instance.promptMessage.text = element.promptMessage;
                 UIManager.instance.hasHandCursorTarget = true;
                 UIManager.instance.SetHandCursorTarget(element.transform.position);
-            }
-            else
-            {
-                UIManager.instance.hasHandCursorTarget = false;
-            }
-
-            UIManager.instance.promptMessage.enabled = false;
-            Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
-
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange, targetLayer))
-            {
-                RayInteractable hitElement = hitInfo.collider.GetComponent<RayInteractable>();
-                if (hitElement)
+                if (InputManager.instance.playerInput.actions["Interact"].triggered)
                 {
-                    UIManager.instance.promptMessage.enabled = true;
-                    UIManager.instance.promptMessage.text = hitElement.promptMessage;
+                    element.Interact();
                 }
             }
         }
+        else
+        {
+            if (isLocalPlayer)
+            {
+                UIManager.instance.promptMessage.enabled = false;
+                UIManager.instance.hasHandCursorTarget = false;
+            }
+        }
+        /*
+        Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange, targetLayer))
+        {
+            RayInteractable hitElement = hitInfo.collider.GetComponent<RayInteractable>();
+            if (hitElement != null)
+            {
+                UIManager.instance.promptMessage.enabled = true;
+                UIManager.instance.promptMessage.text = hitElement.promptMessage;
+                if (InputManager.instance.playerInput.actions["Interact"].triggered)
+                {
+                    hitElement.Interact();
+                }
+            }
+        }
+        */
     }
     
     private RayInteractable GetClosestElementOnCamera()
@@ -86,7 +98,6 @@ public class RayInteractor : NetworkBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Enter");
         if ((targetLayer.value & (1 << other.gameObject.layer)) > 0)
         {
             RayInteractable element = other.GetComponent<RayInteractable>();
@@ -99,7 +110,6 @@ public class RayInteractor : NetworkBehaviour
     
     public void OnTriggerExit(Collider other)
     {
-        Debug.Log("Trigger Exit");
         if ((targetLayer.value & (1 << other.gameObject.layer)) > 0)
         {
             RayInteractable element = other.GetComponent<RayInteractable>();

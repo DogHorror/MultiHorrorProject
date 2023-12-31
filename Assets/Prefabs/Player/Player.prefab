@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2598016915430831255}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.89}
+  m_LocalPosition: {x: 0, y: 0, z: 1.25}
   m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,8 +43,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.53
-  m_Height: 6.31
+  m_Radius: 0.62
+  m_Height: 4.41
   m_Direction: 1
   m_Center: {x: 0.000000049670536, y: 0.8081641, z: -0.00000009934106}
 --- !u!114 &3171686184594484739
@@ -59,6 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd8aad97ca7c7f4993459be97942250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   cameraHolder: {fileID: 5460890390083074177}
   camera: {fileID: 5460890390083074182}
   targetLayer:
@@ -66,6 +69,7 @@ MonoBehaviour:
     m_Bits: 1024
   interactables: []
   checkPerFrame: 3
+  interactRange: 10
   handCursor: {fileID: 0}
 --- !u!1 &5460890388449806326
 GameObject:
