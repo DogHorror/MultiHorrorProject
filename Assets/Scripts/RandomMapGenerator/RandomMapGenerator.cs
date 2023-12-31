@@ -5,6 +5,7 @@ using Debug = UnityEngine.Debug;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
+using Mirror;
 
 [Serializable]
 public struct Grid
@@ -21,7 +22,7 @@ public struct Grid
     }
 }
 
-public class RandomMapGenerator : MonoBehaviour
+public class RandomMapGenerator : NetworkBehaviour
 {
     [SerializeField]
     private GameObject[] room1x1x1S;
@@ -257,6 +258,7 @@ public class RandomMapGenerator : MonoBehaviour
 
     private void Start()
     {
-        GenerateLevel(0);
+        if(isServer)
+            GenerateLevel(0);
     }
 }

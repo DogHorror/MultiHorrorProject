@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class RayInteractable : MonoBehaviour
+public class RayInteractable : MonoBehaviour
 {
     public string promptMessage;
 
-    public virtual void Interact()
+    public UnityEvent OnInteract;
+
+    public void Interact()
     {
-        
+        OnInteract.Invoke();
     }
 }

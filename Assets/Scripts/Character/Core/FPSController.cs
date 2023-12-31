@@ -19,6 +19,9 @@ public class FPSController : NetworkBehaviour
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+
+        if (!isLocalPlayer)
+            camera.enabled = false;
     }
 
     // Update is called once per frame
