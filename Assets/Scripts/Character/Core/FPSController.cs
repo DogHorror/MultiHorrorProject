@@ -18,7 +18,7 @@ public class FPSController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = InputManager.instance.playerInput;;
 
         if (!isLocalPlayer)
             camera.enabled = false;

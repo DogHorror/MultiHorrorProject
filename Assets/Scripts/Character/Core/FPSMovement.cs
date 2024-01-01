@@ -71,7 +71,7 @@ public class FPSMovement : NetworkBehaviour
     
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = InputManager.instance.playerInput;
         controller = GetComponent<CharacterController>();
         
         originalHeight = controller.height;
