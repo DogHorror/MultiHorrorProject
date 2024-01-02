@@ -47,6 +47,9 @@ public class FPSMovement : NetworkBehaviour
     [SerializeField]
     private float jumpHeight = 4f;
     
+    
+    public Vector2 AnimatorVelocity { get; private set; }
+    
     public Vector3 MoveVector { get; private set; }
     
     [Header("Character Settings")]
@@ -60,9 +63,21 @@ public class FPSMovement : NetworkBehaviour
     private Vector2 inputDirection;
     private float originalHeight;
     private Vector3 originalCenter;
+    private Animator animator;
 
     public MovementState movementState;
     public PoseState poseState;
+    
+    
+    private static readonly int InAir = Animator.StringToHash("InAir");
+    private static readonly int MoveX = Animator.StringToHash("MoveX");
+    private static readonly int MoveY = Animator.StringToHash("MoveY");
+    private static readonly int Velocity = Animator.StringToHash("Velocity");
+    private static readonly int Moving = Animator.StringToHash("Moving");
+    //private static readonly int Crouching = Animator.StringToHash("Crouching");
+    //private static readonly int Sliding = Animator.StringToHash("Sliding");
+    private static readonly int Sprinting = Animator.StringToHash("Sprinting");
+    //private static readonly int Proning = Animator.StringToHash("Proning");
     //==================================================================
     #endregion
     
@@ -73,6 +88,7 @@ public class FPSMovement : NetworkBehaviour
     {
         playerInput = InputManager.instance.playerInput;
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
         
         originalHeight = controller.height;
         originalCenter = controller.center;
@@ -104,6 +120,7 @@ public class FPSMovement : NetworkBehaviour
         }
         
         UpdateMovement();
+        UpdateAnimatorParams();
     }
 
     //==================================================================
@@ -200,6 +217,27 @@ public class FPSMovement : NetworkBehaviour
     #region Update Function
     //==================================================================
 
+    private void UpdateAnimatorParams()
+    {
+        var animatorVelocity = inputDirection;
+        animatorVelocity *= movementState == MovementState.InAir ? 0f : 1f;
+
+        AnimatorVelocity = Vector2.Lerp(AnimatorVelocity, animatorVelocity, 
+            1 - Mathf.Exp(-velocitySmoothing * Time.deltaTime));
+
+        animator.SetFloat(MoveX, AnimatorVelocity.x);
+        animator.SetFloat(MoveY, AnimatorVelocity.y);
+        animator.SetFloat(Velocity, AnimatorVelocity.magnitude);
+        animator.SetBool(InAir, IsInAir());
+        animator.SetBool(Moving, IsMoving());
+
+        // Sprinting needs to be blended manually
+        float a = animator.GetFloat(Sprinting);
+        float b = movementState == MovementState.Sprinting ? 1f : 0f;
+
+        a = Mathf.Lerp(a, b, 1 - Mathf.Exp(-velocitySmoothing * Time.deltaTime));
+        animator.SetFloat(Sprinting, a);
+    }
     private void UpdateGrounded()
     {
         var normInput = inputDirection.normalized;

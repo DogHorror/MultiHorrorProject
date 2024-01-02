@@ -6,22 +6,20 @@ using UnityEngine.InputSystem;
 public class RayInteractor : NetworkBehaviour
 {
     [Header("Ray Settings")] 
+    public bool isActivated = true;
     [SerializeField] private Transform cameraHolder;
     [SerializeField] private Camera camera;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private List<RayInteractable> interactables = new List<RayInteractable>();
 
     
-    [Header("UI Settings")] 
-    [SerializeField] private RectTransform handCursor;
+    [Header("Player Settings")]
+    [SerializeField] private FPSController fpsController;
     
-    public void Start()
-    {
-        handCursor = UIManager.instance.handCursor;
-    }
     
     public void Update()
     {
+        if (!isActivated) return;
         RayInteractable element = GetClosestElementOnCamera();
         if (element)
         {
@@ -31,6 +29,8 @@ public class RayInteractor : NetworkBehaviour
                 {
                     UIManager.instance.camera = camera;
                 }
+
+                fpsController.interactionTarget = element;
                 UIManager.instance.promptMessage.enabled = true;
                 UIManager.instance.promptMessage.text = element.promptMessage;
                 UIManager.instance.hasHandCursorTarget = true;
@@ -45,6 +45,7 @@ public class RayInteractor : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
+                fpsController.interactionTarget = null;
                 UIManager.instance.promptMessage.enabled = false;
                 UIManager.instance.hasHandCursorTarget = false;
             }

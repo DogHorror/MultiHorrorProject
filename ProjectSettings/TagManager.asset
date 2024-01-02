@@ -8,10 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ClientPlayer
   - Water
   - UI
-  - 
+  - Weapon, Item, etc..
   - 
   - 
   - 
