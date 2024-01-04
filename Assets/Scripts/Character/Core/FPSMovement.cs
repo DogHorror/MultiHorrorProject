@@ -74,7 +74,7 @@ public class FPSMovement : NetworkBehaviour
     private static readonly int MoveY = Animator.StringToHash("MoveY");
     private static readonly int Velocity = Animator.StringToHash("Velocity");
     private static readonly int Moving = Animator.StringToHash("Moving");
-    //private static readonly int Crouching = Animator.StringToHash("Crouching");
+    private static readonly int Crouching = Animator.StringToHash("Crouching");
     //private static readonly int Sliding = Animator.StringToHash("Sliding");
     private static readonly int Sprinting = Animator.StringToHash("Sprinting");
     //private static readonly int Proning = Animator.StringToHash("Proning");
@@ -136,7 +136,7 @@ public class FPSMovement : NetworkBehaviour
             
         poseState = PoseState.Standing;
             
-        //_animator.SetBool(Crouching, false);
+        animator.SetBool(Crouching, false);
         //onUncrouch.Invoke();
     }
     
@@ -154,7 +154,7 @@ public class FPSMovement : NetworkBehaviour
 
         poseState = PoseState.Crouching;
             
-        //_animator.SetBool(Crouching, true);
+        animator.SetBool(Crouching, true);
         //onCrouch.Invoke();
     }
 
@@ -202,7 +202,7 @@ public class FPSMovement : NetworkBehaviour
             return false;
         }
 
-        if (inputDirection.y <= 0f || inputDirection.x != 0f || !playerInput.actions["Sprint"].IsPressed()) return false;
+        if (inputDirection.y <= 0f || !playerInput.actions["Sprint"].IsPressed()) return false;
 
         //if (!CanSprint()) return false;
             

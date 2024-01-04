@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3298.4238, g: 4087.0625, b: 5409.6914, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,6 +431,8 @@ MonoBehaviour:
   - {fileID: 1710809953009628654, guid: 3ff9ac50bf103964db18fb8c67963cc9, type: 3}
   roomList: []
   roomCount: 0
+  gridX: 15
+  gridZ: 15
   roomWidth: 10
   roomHeight: 4
   roomDepth: 10
@@ -500,7 +502,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ef97b69e1d9aea441b31fb172c2693a0, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 875e650b09505f3409c34e50d7af13d1, type: 2}
 --- !u!4 &1013612607
 Transform:
   m_ObjectHideFlags: 0

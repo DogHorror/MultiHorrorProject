@@ -39,10 +39,12 @@ public class RandomMapGenerator : NetworkBehaviour
     [SerializeField]
     private int roomCount = 0;
 
+    public int gridX = 15;
+    public int gridZ = 15;
 
-    public float roomWidth = 10.0f;
-    public float roomHeight = 4.0f;
-    public float roomDepth = 10.0f;
+    public float roomWidth = 12.0f;
+    public float roomHeight = 5.0f;
+    public float roomDepth = 12.0f;
     
     public bool canPlaceRoom(int[,] grid, List<Grid> checker, int x, int z)
     {
@@ -225,21 +227,21 @@ public class RandomMapGenerator : NetworkBehaviour
     public void GenerateLevel(int floor)
     {
         
-        int[,] grid = new int[9, 9];
+        int[,] grid = new int[gridX, gridZ];
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < gridX; i++)
         {
-            for (int j = 0; j < 9; j++)
+            for (int j = 0; j < gridZ; j++)
             {
                 grid[i, j] = -1;
             }
         }
 
-        grid[4, 4] = -2;
+        grid[gridX / 2, gridZ / 2] = -2;
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < gridX; i++)
         {
-            for (int j = 0; j < 9; j++)
+            for (int j = 0; j < gridZ; j++)
             {
                 Debug.Log("Grid[" + i + ", " + j + "] == " + grid[i,j]);
                 if (grid[i, j] != -1) continue;

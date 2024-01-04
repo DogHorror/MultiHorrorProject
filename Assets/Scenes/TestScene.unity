@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3298.4238, g: 4087.0625, b: 5409.6914, a: 1}
+  m_IndirectSpecularColor: {r: 1878.502, g: 2327.7793, b: 3080.8828, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &623139676
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &943107108
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1462,7 +1462,7 @@ PrefabInstance:
     - target: {fileID: 353502137379302022, guid: 123aa5affeddbe94286348c8022917b5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 9.71
       objectReference: {fileID: 0}
     - target: {fileID: 353502137379302022, guid: 123aa5affeddbe94286348c8022917b5,
         type: 3}
@@ -1946,7 +1946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &1745423053
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2090,7 +2090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &1751469448
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2332,7 +2332,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ef97b69e1d9aea441b31fb172c2693a0, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 875e650b09505f3409c34e50d7af13d1, type: 2}
 --- !u!4 &1929462737
 Transform:
   m_ObjectHideFlags: 0
@@ -2368,7 +2368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &2107620978
 SphereCollider:
   m_ObjectHideFlags: 0
