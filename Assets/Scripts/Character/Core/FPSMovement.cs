@@ -56,6 +56,8 @@ public class FPSMovement : NetworkBehaviour
     public float crouchRatio = 0.5f;
     
     public Transform rootBone;
+
+    public LayerMask uncrouchMask;
     
     private PlayerInput playerInput;
     private CharacterController controller;
@@ -64,6 +66,7 @@ public class FPSMovement : NetworkBehaviour
     private float originalHeight;
     private Vector3 originalCenter;
     private Animator animator;
+    
 
     public MovementState movementState;
     public PoseState poseState;
@@ -173,7 +176,10 @@ public class FPSMovement : NetworkBehaviour
     {
         float height = originalHeight - controller.radius * 2f;
         Vector3 position = rootBone.TransformPoint(originalCenter + Vector3.up * height / 2f);
-        return !Physics.CheckSphere(position, controller.radius);
+        bool ret = !Physics.CheckSphere(position, controller.radius, uncrouchMask);
+        Debug.DrawLine(rootBone.position, position);
+        Debug.Log("Check Un Crouch : " + ret);
+        return ret;
     }
     
     public bool IsInAir()
