@@ -34,7 +34,7 @@ public class RoomEditor : Editor
         foreach (Vector3Int door in doors)
         {
             if (door.y != floor) continue;
-            check[door.x + 1, door.z] = true;
+            check[door.x + 1, door.z + 1] = true;
         }
         
         float cellSize = 35.0f;
@@ -50,7 +50,7 @@ public class RoomEditor : Editor
             string text = check[x + 1, 0] ? "O" : "X";
             if (GUILayout.Button(text, buttonStyle))
             {
-                Vector3Int element = new Vector3Int(x, floor, 0);
+                Vector3Int element = new Vector3Int(x, floor, -1);
                 if (room.doors.Contains(element))
                 {
                     room.doors.Remove(element);
@@ -70,7 +70,7 @@ public class RoomEditor : Editor
             {
                 if (x == 0 || x == scale.x + 1)
                 {
-                    string text = check[x, y] ? "O" : "X";
+                    string text = check[x, y + 1] ? "O" : "X";
                     if (GUILayout.Button(text, buttonStyle))
                     {
                         Vector3Int element = new Vector3Int(x - 1, floor, y);
@@ -94,7 +94,7 @@ public class RoomEditor : Editor
         GUILayout.Space(38f);
         for (int x = 0; x < scale.x; x++)
         {
-            string text = check[x + 1, scale.y] ? "O" : "X";
+            string text = check[x + 1, scale.y + 1] ? "O" : "X";
             if (GUILayout.Button(text, buttonStyle))
             {
                 Vector3Int element = new Vector3Int(x, floor, scale.y);
