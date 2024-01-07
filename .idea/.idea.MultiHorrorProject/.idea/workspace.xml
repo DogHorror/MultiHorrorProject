@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="94aab5a4-9213-4078-83d2-a6058604983b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animator/Gull/GeneralAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animator/Gull/GeneralAnimator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FPS/Demo/Character/Animations/IKRigAnimator_Humanoid.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPS/Demo/Character/Animations/IKRigAnimator_Humanoid.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Character/gull_anim Variant.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Character/gull_anim Variant.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Easy Save 3/Editor/ES3Asmdefs.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Player_Seagull.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/Player_Seagull.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/Core/FPSMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/Core/FPSMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +17,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkAnimEventReceiver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkAnimator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FPS/FPSNetworkCamera.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inventory/PlayerInventory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.5.1/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
@@ -124,7 +118,7 @@
       <workItem from="1704095470120" duration="1740000" />
       <workItem from="1704172139508" duration="5644000" />
       <workItem from="1704368350924" duration="3690000" />
-      <workItem from="1704442362387" duration="1741000" />
+      <workItem from="1704442362387" duration="4790000" />
     </task>
     <servers />
   </component>
