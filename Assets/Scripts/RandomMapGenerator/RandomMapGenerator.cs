@@ -34,7 +34,7 @@ public class RandomMapGenerator : NetworkBehaviour
     private GameObject[] roomLx1Shapes;
 
     public List<int[,]> level = new List<int[,]>();
-    public List<Room> roomList = new List<Room>();
+    public List<RoomObsolete> roomList = new List<RoomObsolete>();
 
     [SerializeField]
     private int roomCount = 0;
@@ -63,7 +63,7 @@ public class RandomMapGenerator : NetworkBehaviour
         return true;
     }
 
-    public Room CreateRoom(int[,] grid, int x, int y, int z)
+    public RoomObsolete CreateRoom(int[,] grid, int x, int y, int z)
     {
         int width = 1;
         int height = 1;
@@ -218,7 +218,7 @@ public class RandomMapGenerator : NetworkBehaviour
                 break;
         }
 
-        Room room = roomPrefab.GetComponent<Room>();
+        RoomObsolete room = roomPrefab.GetComponent<RoomObsolete>();
         room.Init(roomCount++, shape, x, y, z, roomWidth, roomHeight, roomDepth);
         room.CreateWallUsingGrid(grid);
         return room;
@@ -249,7 +249,7 @@ public class RandomMapGenerator : NetworkBehaviour
                 int width = 1;
                 int height = 1;
 
-                Room room = CreateRoom(grid, i, 0, j);
+                RoomObsolete room = CreateRoom(grid, i, 0, j);
                 
                 roomList.Add(room);
             }
