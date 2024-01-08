@@ -3,14 +3,14 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(RandomMapGenerator))]
+[CustomEditor(typeof(RandomMapGeneratorObsolete))]
 public class RandomMapGeneratorEditor : Editor
 {
     private List<int[,]> level;
 
     private void OnEnable()
     {
-        RandomMapGenerator mapGenerator = (RandomMapGenerator)target;
+        RandomMapGeneratorObsolete mapGenerator = (RandomMapGeneratorObsolete)target;
         level = mapGenerator.level;
     }
 
@@ -18,7 +18,7 @@ public class RandomMapGeneratorEditor : Editor
     {
         base.OnInspectorGUI();
 
-        RandomMapGenerator mapGenerator = (RandomMapGenerator)target;
+        RandomMapGeneratorObsolete mapGenerator = (RandomMapGeneratorObsolete)target;
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Level Elements", EditorStyles.boldLabel);

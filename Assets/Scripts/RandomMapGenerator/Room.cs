@@ -9,6 +9,9 @@ public class Room : MonoBehaviour
     public Vector3Int scale;
     public List<Vector3Int> doorSpawnPoints = new List<Vector3Int>();
 
+    [Space(10f)]
+    public List<GameObject> lights = new List<GameObject>();
+    public List<GameObject> emissiveObjects = new List<GameObject>();
 
     [Header("Runtime Settings")] 
     public int seed;

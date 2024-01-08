@@ -22,7 +22,7 @@ public struct Grid
     }
 }
 
-public class RandomMapGenerator : NetworkBehaviour
+public class RandomMapGeneratorObsolete : NetworkBehaviour
 {
     [SerializeField]
     private GameObject[] room1x1x1S;
