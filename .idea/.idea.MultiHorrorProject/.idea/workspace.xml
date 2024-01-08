@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="94aab5a4-9213-4078-83d2-a6058604983b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MultiHorrorProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/MapGeneratorEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/MapGeneratorEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Room/2X2ROOM1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Room/2X2ROOM1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UnitTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UnitTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/RandomMapGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/RandomMapGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/Room.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/1FTextures/map.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/1FTextures/map.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/OfficeMapGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RandomMapGenerator/OfficeMapGenerator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

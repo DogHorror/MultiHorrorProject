@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058c77be390d5014988a285b3d08c9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 309769075}
+  room: {fileID: 0}
   floor: 0
   gridPosition: {x: -1, y: 0, z: 0}
   wallObject: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &661714279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058c77be390d5014988a285b3d08c9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 309769075}
+  room: {fileID: 0}
   floor: 0
   gridPosition: {x: 0, y: 0, z: -1}
   wallObject: {fileID: 0}
@@ -9220,7 +9220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8619031644782748448
 Transform:
   m_ObjectHideFlags: 0

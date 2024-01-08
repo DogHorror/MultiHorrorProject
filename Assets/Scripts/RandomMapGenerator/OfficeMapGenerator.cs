@@ -16,26 +16,22 @@ public class OfficeMapGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> roomPrefabs;
     [SerializeField] private List<GameObject> stairPrefabs;
 
-    [SerializeField]
-    Vector3Int size;
-    [SerializeField]
-    int roomCount;
-    [SerializeField]
-    Vector2Int roomMaxSize;
-    [SerializeField]
-    GameObject cubePrefab;
-    [SerializeField]
-    Material redMaterial;
-    [SerializeField]
-    Material blueMaterial;
+    [SerializeField] private Vector2Int size;
+    [SerializeField] private int roomCount;
+    [SerializeField] private Vector2Int roomMaxSize;
+    [SerializeField] private GameObject cubePrefab;
+    [SerializeField] private Material redMaterial;
+    [SerializeField] private Material blueMaterial;
 
+    [SerializeField] private int minStairCount;
+    
     Random random;
     Grid2D<CellType> grid;
     List<Room> rooms;
     Delaunay2D delaunay;
     HashSet<Prim.Edge> selectedEdges;
 
-    private bool[] checker;
+    private bool[,] checker;
     void Start() {
         Generate();
     }
@@ -45,6 +41,8 @@ public class OfficeMapGenerator : MonoBehaviour
         grid = new Grid2D<CellType>(size, Vector2Int.zero);
         rooms = new List<Room>();
 
+        checker = new bool[size.x, size.y];
+
         PlaceRooms();
         Triangulate();
         CreateHallways();
@@ -52,9 +50,17 @@ public class OfficeMapGenerator : MonoBehaviour
     }
 
 
-    void PlaceRooms()
+    void PlaceRooms(int floor)
     {
+        for (int i = 0; i < minStairCount; i++)
+        {
+            Vector2Int location = new Vector2Int(random.Next(0, size.x), random.Next(0, size.y));
 
+            int stairIndex = random.Next(0, stairPrefabs.Count);
+
+            Room stair = stairPrefabs[stairIndex].GetComponent<Room>();
+
+        }
     }
     
     /*
