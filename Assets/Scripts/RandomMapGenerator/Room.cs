@@ -1,33 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class Room : MonoBehaviour
 {
+    [Header("Prefab Settings")]
     public Vector3Int scale;
-    public List<Vector3Int> doors = new List<Vector3Int>();
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<Vector3Int> doorSpawnPoints = new List<Vector3Int>();
 
-    // Update is called once per frame
-    void Update()
+
+    [Header("Runtime Settings")] 
+    public int seed;
+    [SerializeField] private int minDoorCount = 1;
+    [SerializeField] private int maxDoorCount = -1;
+
+    private Random random;
+    [SerializeField] private List<Vector3Int> doors = new List<Vector3Int>();
+
+    public void Start()
     {
+        random = new Random(seed);
+        SetRandomDoor();
+    }
+    public void SetRandomDoor()
+    {
+        int maxCount = (maxDoorCount == -1) ? doorSpawnPoints.Count : maxDoorCount;
+        int doorCount = random.Next(1, maxCount);
+
+        for (int i = 0; i < doorCount; i++)
+        {
+            var index = random.Next(0, doorSpawnPoints.Count);
+            doors.Add(doorSpawnPoints[index]);
+            doorSpawnPoints.RemoveAt(index);
+        }
     }
     
     private void OnDrawGizmosSelected()
     {
-        // 상하좌우 방향 벡터
-        Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right };
-
-        // 각 방향에 대한 화살표 그리기
-        foreach (Vector3 direction in directions)
-        {
-            Vector3 arrowEnd = transform.position + direction * 2f; // 화살표 끝점 계산
-            Debug.DrawRay(transform.position, direction, Color.red); // 화살표 그리기
-        }
+        foreach(Vector3Int door in doorSpawnPoints)
+            Gizmos.DrawWireSphere(transform.position + new Vector3(door.x * 12f + 6f, door.y * 5f + 2.5f, door.z * 12f + 6f), 2f);
     }
 }

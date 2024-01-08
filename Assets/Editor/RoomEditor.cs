@@ -28,7 +28,7 @@ public class RoomEditor : Editor
 
     private void DrawGrid(Room room, int floor)
     {
-        List<Vector3Int> doors = room.doors;
+        List<Vector3Int> doors = room.doorSpawnPoints;
         Vector2Int scale = new Vector2Int(room.scale.x, room.scale.z);
         bool[,] check = new bool[(scale.x + 2), (scale.y + 2)];
         foreach (Vector3Int door in doors)
@@ -47,23 +47,23 @@ public class RoomEditor : Editor
         GUILayout.Space(38f);
         for (int x = 0; x < scale.x; x++)
         {
-            string text = check[x + 1, 0] ? "O" : "X";
+            string text = check[x + 1, scale.y + 1] ? "O" : "X";
             if (GUILayout.Button(text, buttonStyle))
             {
-                Vector3Int element = new Vector3Int(x, floor, -1);
-                if (room.doors.Contains(element))
+                Vector3Int element = new Vector3Int(x, floor, scale.y);
+                if (doors.Contains(element))
                 {
-                    room.doors.Remove(element);
+                    doors.Remove(element);
                 }
                 else
                 {
-                    room.doors.Add(element);
+                    doors.Add(element);
                 }
             }
         }
         GUILayout.Space(38f);
         GUILayout.EndHorizontal();
-        for (int y = 0; y < scale.y; y++)
+        for (int y = scale.y - 1; y >= 0; y--)
         {
             GUILayout.BeginHorizontal();
             for (int x = 0; x < scale.x + 2; x++)
@@ -74,13 +74,13 @@ public class RoomEditor : Editor
                     if (GUILayout.Button(text, buttonStyle))
                     {
                         Vector3Int element = new Vector3Int(x - 1, floor, y);
-                        if (room.doors.Contains(element))
+                        if (doors.Contains(element))
                         {
-                            room.doors.Remove(element);
+                            doors.Remove(element);
                         }
                         else
                         {
-                            room.doors.Add(element);
+                            doors.Add(element);
                         }
                     }
                     continue;
@@ -94,17 +94,17 @@ public class RoomEditor : Editor
         GUILayout.Space(38f);
         for (int x = 0; x < scale.x; x++)
         {
-            string text = check[x + 1, scale.y + 1] ? "O" : "X";
+            string text = check[x + 1, 0] ? "O" : "X";
             if (GUILayout.Button(text, buttonStyle))
             {
-                Vector3Int element = new Vector3Int(x, floor, scale.y);
-                if (room.doors.Contains(element))
+                Vector3Int element = new Vector3Int(x, floor, -1);
+                if (doors.Contains(element))
                 {
-                    room.doors.Remove(element);
+                    doors.Remove(element);
                 }
                 else
                 {
-                    room.doors.Add(element);
+                    doors.Add(element);
                 }
             }
         }
