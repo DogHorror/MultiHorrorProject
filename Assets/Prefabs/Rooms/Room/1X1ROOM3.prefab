@@ -1972,7 +1972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5325713811552466197}
-  - component: {fileID: 8254606151635802976}
+  - component: {fileID: 1300925263434627539}
   m_Layer: 0
   m_Name: 1X1ROOM3
   m_TagString: Untagged
@@ -1999,7 +1999,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8254606151635802976
+--- !u!114 &1300925263434627539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2013,10 +2013,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: {x: 1, y: 1, z: 1}
   doorSpawnPoints:
-  - {x: 0, y: 0, z: -1}
   - {x: 0, y: 0, z: 1}
-  - {x: -1, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: -1}
+  - {x: -1, y: 0, z: 0}
   lights:
   - {fileID: 5325713811239094839}
   - {fileID: 5325713812013035963}
@@ -2025,10 +2025,10 @@ MonoBehaviour:
   minDoorCount: 00000000
   maxDoorCount: 00000000000000000000000000000000
   walls:
-  - {fileID: 1056808140049851380}
-  - {fileID: 2351304507017951219}
-  - {fileID: 1238276968808667525}
-  - {fileID: 538620503153857677}
+  - {fileID: 2832670570964275993}
+  - {fileID: 2780815950870575612}
+  - {fileID: 7179824785299002476}
+  - {fileID: 633391347957916783}
 --- !u!1 &5325713811636546900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4801,7 +4801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7906918609036151809}
-  - component: {fileID: 1238276968808667525}
+  - component: {fileID: 7179824785299002476}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -4826,7 +4826,7 @@ Transform:
   m_Father: {fileID: 7906918609700417247}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1238276968808667525
+--- !u!114 &7179824785299002476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,9 +4840,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 0}
   floor: 0
-  gridPosition: {x: 0, y: 0, z: 0}
+  gridPosition: {x: 0, y: 0, z: 1}
   wallObject: {fileID: 7906918610750311889}
-  doorObject: {fileID: 5325713811462958660}
+  doorObject: {fileID: 5325713811890103485}
 --- !u!1 &7906918609303607978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4970,7 +4970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7906918609778587630}
-  - component: {fileID: 1056808140049851380}
+  - component: {fileID: 2832670570964275993}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -4995,7 +4995,7 @@ Transform:
   m_Father: {fileID: 7906918609700417247}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1056808140049851380
+--- !u!114 &2832670570964275993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5009,7 +5009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 0}
   floor: 0
-  gridPosition: {x: 0, y: 0, z: 0}
+  gridPosition: {x: 0, y: 0, z: -1}
   wallObject: {fileID: 7906918609303607978}
   doorObject: {fileID: 5325713811468358558}
 --- !u!1 &7906918610004509181
@@ -5104,7 +5104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7906918610104831850}
-  - component: {fileID: 538620503153857677}
+  - component: {fileID: 633391347957916783}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -5129,7 +5129,7 @@ Transform:
   m_Father: {fileID: 7906918609700417247}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &538620503153857677
+--- !u!114 &633391347957916783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5143,7 +5143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 0}
   floor: 0
-  gridPosition: {x: 0, y: 0, z: 0}
+  gridPosition: {x: 1, y: 0, z: 0}
   wallObject: {fileID: 7906918610139306321}
   doorObject: {fileID: 5325713811016025337}
 --- !u!1 &7906918610139306321
@@ -5238,7 +5238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7906918610414046078}
-  - component: {fileID: 2351304507017951219}
+  - component: {fileID: 2780815950870575612}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -5263,7 +5263,7 @@ Transform:
   m_Father: {fileID: 7906918609700417247}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2351304507017951219
+--- !u!114 &2780815950870575612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5277,7 +5277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 0}
   floor: 0
-  gridPosition: {x: 0, y: 0, z: 0}
+  gridPosition: {x: -1, y: 0, z: 0}
   wallObject: {fileID: 7906918610848515399}
   doorObject: {fileID: 5325713811462958660}
 --- !u!1 &7906918610743997186
