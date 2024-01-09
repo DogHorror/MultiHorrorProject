@@ -202,16 +202,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefabs:
   - {fileID: 4077151047374910015, guid: 7f9d07b4aefb77c48be1299a1d3d10b4, type: 3}
-  stairPrefabs: []
-  cellSize: {x: 0, y: 0, z: 0}
+  stairPrefabs:
+  - {fileID: 8772441598458615846, guid: d8697dc5ddc8c4242b179e9289e9a2f8, type: 3}
+  cellSize: {x: 12, y: 5, z: 12}
   seed: 0
-  floorCount: 0
-  gridSize: {x: 0, y: 0}
-  roomCount: 0
-  cubePrefab: {fileID: 0}
-  redMaterial: {fileID: 0}
-  blueMaterial: {fileID: 0}
-  minStairCount: 
+  floorCount: 4
+  gridSize: {x: 10, y: 10}
+  roomCount: 8
+  cubePrefab: {fileID: 1759537800499196931, guid: e842baffa6c1d9a459ae8bc209bef8a0,
+    type: 3}
+  redMaterial: {fileID: 2100000, guid: f65e60b4c62f9174093b847058bfed59, type: 2}
+  blueMaterial: {fileID: 2100000, guid: f0166665df0686f4f880537184496e4f, type: 2}
+  minStairCount: 02000000020000000200000000000000
+  rooms: []
+  stairs: []
 --- !u!4 &569622359
 Transform:
   m_ObjectHideFlags: 0
@@ -793,35 +797,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1701703537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1701703538}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1701703538
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701703537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

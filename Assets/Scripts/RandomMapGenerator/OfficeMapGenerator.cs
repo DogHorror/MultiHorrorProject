@@ -34,8 +34,8 @@ public class OfficeMapGenerator : MonoBehaviour
     
     Random random;
     Grid2D<CellType>[] grid;
-    List<Room> rooms;
-    List<Room> stairs;
+    [SerializeField] List<Room> rooms;
+    [SerializeField] List<Room> stairs;
     Delaunay2D delaunay;
     HashSet<Prim.Edge> selectedEdges;
 
@@ -83,26 +83,27 @@ public class OfficeMapGenerator : MonoBehaviour
         {
             Vector3Int location = new Vector3Int(random.Next(1, gridSize.x - 1), random.Next(0, floorCount), random.Next(1, gridSize.y - 1));
             
-            int roomIndex = random.Next(0, roomPrefabs.Count);
+            int roomIndex = random.Next(0, roomPrefabs.Count - 1);
 
             Room room = roomPrefabs[roomIndex].GetComponent<Room>();
             Vector3Int scale = room.scale;
             RotAngle rotAngle = (RotAngle)random.Next(0, 3);
             if (rotAngle == RotAngle.d90 || rotAngle == RotAngle.d270)
             {
-                scale = new Vector3Int(scale.z, scale.y, scale.x);
+                //scale = new Vector3Int(scale.z, scale.y, scale.x);
             }
 
             bool add = true;
             
-            for (int x = 0; x < scale.x; x++)
+            for (int x = location.x; x < location.x + scale.x; x++)
             {
-                for (int y = 0; y < scale.y; y++)
+                for (int y = location.y; y < location.y + scale.y; y++)
                 {
-                    for (int z = 0; z < scale.z; z++)
+                    for (int z = location.z; z < location.z + scale.z; z++)
                     {
                         if (!checker[x, y, z])
                         {
+                            Debug.Log("Checker False");
                             add = false;
                             break;
                         }
@@ -114,16 +115,18 @@ public class OfficeMapGenerator : MonoBehaviour
                 location.x + scale.x > gridSize.x ||
                 location.z + scale.z > gridSize.y)
             {
+                Debug.Log("Grid Out");
                 add = false;
             }
 
+            Debug.Log("Try Rooms : " + add);
             if (add == true)
             {
-                for (int x = 0; x < scale.x; x++)
+                for (int x = location.x; x < location.x + scale.x; x++)
                 {
-                    for (int y = 0; y < scale.y; y++)
+                    for (int y = location.y; y < location.y + scale.y; y++)
                     {
-                        for (int z = 0; z < scale.z; z++)
+                        for (int z = location.z; z < location.z + scale.z; z++)
                         {
                             checker[x, y, z] = false;
                             grid[y][new Vector2Int(x, z)] = CellType.Room;
@@ -142,25 +145,23 @@ public class OfficeMapGenerator : MonoBehaviour
         {
             Vector2Int location = new Vector2Int(random.Next(1, gridSize.x - 1), random.Next(1, gridSize.y - 1));
             
-            int stairIndex = random.Next(0, stairPrefabs.Count);
+            int stairIndex = random.Next(0, stairPrefabs.Count - 1);
 
             Room stair = stairPrefabs[stairIndex].GetComponent<Room>();
-            Vector3Int scale = stair.scale;
+            Vector3Int stairScale = stair.scale;
             RotAngle rotAngle = (RotAngle)random.Next(0, 3);
             if (rotAngle == RotAngle.d90 || rotAngle == RotAngle.d270)
             {
-                scale = new Vector3Int(scale.z, scale.y, scale.x);
+                //scale = new Vector3Int(scale.z, scale.y, scale.x);
             }
-            
-            
-            
+
             bool add = true;
             
-            for (int x = 0; x < scale.x; x++)
+            for (int x = location.x; x < location.x + stairScale.x; x++)
             {
-                for (int y = 0; y < scale.y; y++)
+                for (int y = floor; y < floor + stairScale.y; y++)
                 {
-                    for (int z = 0; z < scale.z; z++)
+                    for (int z = location.y; z < location.y + stairScale.z; z++)
                     {
                         if (!checker[x, y, z])
                         {
@@ -171,20 +172,20 @@ public class OfficeMapGenerator : MonoBehaviour
                 }
             }
             
-            if (floor + scale.y > floorCount ||
-                location.x + scale.x > gridSize.x ||
-                location.y + scale.y > gridSize.y)
+            if (floor + stairScale.y > floorCount ||
+                location.x + stairScale.x > gridSize.x ||
+                location.y + stairScale.y > gridSize.y)
             {
                 add = false;
             }
 
             if (add == true)
             {
-                for (int x = 0; x < scale.x; x++)
+                for (int x = location.x; x < location.x + stairScale.x; x++)
                 {
-                    for (int y = 0; y < scale.y; y++)
+                    for (int y = floor; y < floor + stairScale.y; y++)
                     {
-                        for (int z = 0; z < scale.z; z++)
+                        for (int z = location.y; z < location.y + stairScale.z; z++)
                         {
                             checker[x, y, z] = false;
                             grid[y][new Vector2Int(x, z)] = CellType.Room;
@@ -241,8 +242,12 @@ public class OfficeMapGenerator : MonoBehaviour
         List<Vertex> vertices = new List<Vertex>();
 
         foreach (var room in rooms) {
-            foreach(Wall wall in room.GetDoorPosition())
-                vertices.Add(new Vertex<Wall>(wall.GetDoorPosition(), wall));
+            foreach (Wall wall in room.GetDoorPosition())
+            {
+                vertices.Add(new Vertex<Wall>(wall.GetDoorPosition(), wall));            
+                Debug.Log("Vertex : " + wall.GetDoorPosition());
+
+            }
         }
 
         delaunay = Delaunay2D.Triangulate(vertices);
@@ -253,6 +258,7 @@ public class OfficeMapGenerator : MonoBehaviour
 
         foreach (var edge in delaunay.Edges) {
             edges.Add(new Prim.Edge(edge.U, edge.V));
+            Debug.Log("Edge : " + edge.U + " / " + edge.V);
         }
 
         List<Prim.Edge> mst = Prim.MinimumSpanningTree(edges, edges[0].U);
@@ -317,7 +323,7 @@ public class OfficeMapGenerator : MonoBehaviour
 
                     foreach (var pos in path) {
                         if (grid[floor][pos] == CellType.Hallway) {
-                            PlaceHallway(pos);
+                            PlaceHallway(new Vector3Int(pos.x, floor, pos.y));
                         }
                     }
                 }
@@ -325,9 +331,9 @@ public class OfficeMapGenerator : MonoBehaviour
         }
     }
 
-    void PlaceCube(Vector2Int location, Vector2Int size, Material material) {
-        GameObject go = Instantiate(cubePrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
-        go.GetComponent<Transform>().localScale = new Vector3(size.x, 1, size.y);
+    void PlaceCube(Vector3Int position, Vector3 size, Material material) {
+        GameObject go = Instantiate(cubePrefab, Vector3.Scale(cellSize, position), Quaternion.identity);
+        go.GetComponent<Transform>().localScale = size;
         go.GetComponent<MeshRenderer>().material = material;
     }
 
@@ -346,7 +352,7 @@ public class OfficeMapGenerator : MonoBehaviour
         stairRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), position, rotAngle, seed);
     }
 
-    void PlaceHallway(Vector2Int location) {
-        PlaceCube(location, new Vector2Int(1, 1), blueMaterial);
+    void PlaceHallway(Vector3Int location) {
+        PlaceCube(location, cellSize, blueMaterial);
     }
 }
