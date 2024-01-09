@@ -207,13 +207,15 @@ MonoBehaviour:
   cellSize: {x: 12, y: 5, z: 12}
   seed: 0
   floorCount: 4
-  gridSize: {x: 30, y: 30}
-  roomCount: 30
+  gridSize: {x: 10, y: 10}
+  roomCount: 8
   cubePrefab: {fileID: 1759537800499196931, guid: e842baffa6c1d9a459ae8bc209bef8a0,
     type: 3}
   redMaterial: {fileID: 2100000, guid: f65e60b4c62f9174093b847058bfed59, type: 2}
   blueMaterial: {fileID: 2100000, guid: f0166665df0686f4f880537184496e4f, type: 2}
   minStairCount: 02000000020000000200000000000000
+  rooms: []
+  stairs: []
 --- !u!4 &569622359
 Transform:
   m_ObjectHideFlags: 0
