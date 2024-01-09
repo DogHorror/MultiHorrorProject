@@ -17,7 +17,13 @@ public class Wall : MonoBehaviour
     private Vector3Int position;
     
 
+    #if UNITY_EDITOR
     private void OnValidate()
+    {
+        room = GetComponentInParent<Room>();
+    }
+    #endif
+    public void Start()
     {
         room = GetComponentInParent<Room>();
     }
