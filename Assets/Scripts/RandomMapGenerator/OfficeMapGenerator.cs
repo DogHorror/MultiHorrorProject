@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using Random = System.Random;
 using Graphs;
+using IO.Swagger.Model;
+using Unity.VisualScripting;
 
 public class OfficeMapGenerator : MonoBehaviour
 {
@@ -15,51 +18,187 @@ public class OfficeMapGenerator : MonoBehaviour
     [Header("Room Settings")] 
     [SerializeField] private List<GameObject> roomPrefabs;
     [SerializeField] private List<GameObject> stairPrefabs;
-
-    [SerializeField] private Vector2Int size;
+    
+    [SerializeField] private int seed;
+    [SerializeField] private int floorCount;
+    [SerializeField] private Vector2Int gridSize;
     [SerializeField] private int roomCount;
     [SerializeField] private Vector2Int roomMaxSize;
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private Material redMaterial;
     [SerializeField] private Material blueMaterial;
 
-    [SerializeField] private int minStairCount;
+    [SerializeField] private int[] minStairCount;
     
     Random random;
-    Grid2D<CellType> grid;
+    Grid2D<CellType>[] grid;
     List<Room> rooms;
+    List<Room> stairs;
     Delaunay2D delaunay;
     HashSet<Prim.Edge> selectedEdges;
 
-    private bool[,] checker;
+    private bool[,,] checker;
     void Start() {
         Generate();
     }
 
     void Generate() {
         random = new Random(0);
-        grid = new Grid2D<CellType>(size, Vector2Int.zero);
+        
+        grid = new Grid2D<CellType>[floorCount];
+        for(int i = 0; i < floorCount; i++)
+            grid[i] = new Grid2D<CellType>(gridSize, Vector2Int.zero);
+        
         rooms = new List<Room>();
+        stairs = new List<Room>();
 
-        checker = new bool[size.x, size.y];
+        checker = new bool[gridSize.x, floorCount, gridSize.y];
+        for (int i = 0; i < gridSize.x; i++)
+        {
+            for (int j = 0; j < floorCount; j++)
+            {
+                for (int k = 0; k < gridSize.y; k++)
+                {
+                    checker[i, j, k] = true;
+                }
+            }
+        }
 
+        for (int i = 0; i < floorCount - 1; i++)
+        {
+            PlaceStairs(i);
+        }
+        
         PlaceRooms();
         Triangulate();
         CreateHallways();
         PathfindHallways();
     }
 
-
-    void PlaceRooms(int floor)
+    void PlaceRooms()
     {
-        for (int i = 0; i < minStairCount; i++)
+        for (int i = 0; i < roomCount; i++)
         {
-            Vector2Int location = new Vector2Int(random.Next(0, size.x), random.Next(0, size.y));
+            Vector3Int location = new Vector3Int(random.Next(1, gridSize.x - 1), random.Next(0, floorCount), random.Next(1, gridSize.y - 1));
+            
+            int roomIndex = random.Next(0, roomPrefabs.Count);
 
+            Room room = roomPrefabs[roomIndex].GetComponent<Room>();
+            Vector3Int scale = room.scale;
+            RotAngle rotAngle = (RotAngle)random.Next(0, 3);
+            if (rotAngle == RotAngle.d90 || rotAngle == RotAngle.d270)
+            {
+                scale = new Vector3Int(scale.z, scale.y, scale.x);
+            }
+
+            bool add = true;
+            
+            for (int x = 0; x < scale.x; x++)
+            {
+                for (int y = 0; y < scale.y; y++)
+                {
+                    for (int z = 0; z < scale.z; z++)
+                    {
+                        if (!checker[x, y, z])
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (location.y + scale.y > floorCount ||
+                location.x + scale.x > gridSize.x ||
+                location.z + scale.z > gridSize.y)
+            {
+                add = false;
+            }
+
+            if (add == true)
+            {
+                for (int x = 0; x < scale.x; x++)
+                {
+                    for (int y = 0; y < scale.y; y++)
+                    {
+                        for (int z = 0; z < scale.z; z++)
+                        {
+                            checker[x, y, z] = false;
+                            grid[y][new Vector2Int(x, z)] = CellType.Room;
+                        }
+                    }
+                }
+                
+                GameObject go = Instantiate(roomPrefabs[roomIndex], new Vector3(location.x, location.y, location.z), Quaternion.identity);
+                Room goRoom = go.GetComponent<Room>();
+                rooms.Add(goRoom);
+                goRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), location, rotAngle, seed);
+            }
+        }
+    }
+
+
+    void PlaceStairs(int floor)
+    {
+        for (int i = 0; i < minStairCount[floor]; i++)
+        {
+            Vector2Int location = new Vector2Int(random.Next(1, gridSize.x - 1), random.Next(1, gridSize.y - 1));
+            
             int stairIndex = random.Next(0, stairPrefabs.Count);
 
             Room stair = stairPrefabs[stairIndex].GetComponent<Room>();
+            Vector3Int scale = stair.scale;
+            RotAngle rotAngle = (RotAngle)random.Next(0, 3);
+            if (rotAngle == RotAngle.d90 || rotAngle == RotAngle.d270)
+            {
+                scale = new Vector3Int(scale.z, scale.y, scale.x);
+            }
+            
+            
+            
+            bool add = true;
+            
+            for (int x = 0; x < scale.x; x++)
+            {
+                for (int y = 0; y < scale.y; y++)
+                {
+                    for (int z = 0; z < scale.z; z++)
+                    {
+                        if (!checker[x, y, z])
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (floor + scale.y > floorCount ||
+                location.x + scale.x > gridSize.x ||
+                location.y + scale.y > gridSize.y)
+            {
+                add = false;
+            }
 
+            if (add == true)
+            {
+                for (int x = 0; x < scale.x; x++)
+                {
+                    for (int y = 0; y < scale.y; y++)
+                    {
+                        for (int z = 0; z < scale.z; z++)
+                        {
+                            checker[x, y, z] = false;
+                            grid[y][new Vector2Int(x, z)] = CellType.Room;
+                        }
+                    }
+                }
+                
+                GameObject go = Instantiate(stairPrefabs[stairIndex], new Vector3(location.x, floor, location.y), Quaternion.identity);
+                Room stairRoom = go.GetComponent<Room>();
+                stairs.Add(stairRoom);
+                stairRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), new Vector3Int(location.x, floor, location.y), rotAngle, seed);
+            }
         }
     }
     
@@ -107,7 +246,8 @@ public class OfficeMapGenerator : MonoBehaviour
         List<Vertex> vertices = new List<Vertex>();
 
         foreach (var room in rooms) {
-            vertices.Add(new Vertex<Room>((Vector2)room.bounds.position + ((Vector2)room.bounds.size) / 2, room));
+            foreach(Wall wall in room.GetDoorPosition())
+                vertices.Add(new Vertex<Wall>(wall.GetDoorPosition(), wall));
         }
 
         delaunay = Delaunay2D.Triangulate(vertices);
@@ -134,53 +274,56 @@ public class OfficeMapGenerator : MonoBehaviour
     }
 
     void PathfindHallways() {
-        DungeonPathfinder2D aStar = new DungeonPathfinder2D(size);
+        for (int floor = 0; floor < floorCount; floor++)
+        {
+            DungeonPathfinder2D aStar = new DungeonPathfinder2D(gridSize);
 
-        foreach (var edge in selectedEdges) {
-            var startRoom = (edge.U as Vertex<Room>).Item;
-            var endRoom = (edge.V as Vertex<Room>).Item;
+            foreach (var edge in selectedEdges) {
+                var startWall = (edge.U as Vertex<Wall>).Item;
+                var endWall = (edge.V as Vertex<Wall>).Item;
 
-            var startPosf = startRoom.bounds.center;
-            var endPosf = endRoom.bounds.center;
-            var startPos = new Vector2Int((int)startPosf.x, (int)startPosf.y);
-            var endPos = new Vector2Int((int)endPosf.x, (int)endPosf.y);
+                var startPosf = startWall.GetDoorPosition();
+                var endPosf = endWall.GetDoorPosition();
+                var startPos = new Vector2Int((int)startPosf.x, (int)startPosf.y);
+                var endPos = new Vector2Int((int)endPosf.x, (int)endPosf.y);
 
-            var path = aStar.FindPath(startPos, endPos, (DungeonPathfinder2D.Node a, DungeonPathfinder2D.Node b) => {
-                var pathCost = new DungeonPathfinder2D.PathCost();
+                var path = aStar.FindPath(startPos, endPos, (DungeonPathfinder2D.Node a, DungeonPathfinder2D.Node b) => {
+                    var pathCost = new DungeonPathfinder2D.PathCost();
                 
-                pathCost.cost = Vector2Int.Distance(b.Position, endPos);    //heuristic
+                    pathCost.cost = Vector2Int.Distance(b.Position, endPos);    //heuristic
 
-                if (grid[b.Position] == CellType.Room) {
-                    pathCost.cost += 10;
-                } else if (grid[b.Position] == CellType.None) {
-                    pathCost.cost += 5;
-                } else if (grid[b.Position] == CellType.Hallway) {
-                    pathCost.cost += 1;
-                }
-
-                pathCost.traversable = true;
-
-                return pathCost;
-            });
-
-            if (path != null) {
-                for (int i = 0; i < path.Count; i++) {
-                    var current = path[i];
-
-                    if (grid[current] == CellType.None) {
-                        grid[current] = CellType.Hallway;
+                    if (grid[floor][b.Position] == CellType.Room) {
+                        pathCost.cost += 10;
+                    } else if (grid[floor][b.Position] == CellType.None) {
+                        pathCost.cost += 5;
+                    } else if (grid[floor][b.Position] == CellType.Hallway) {
+                        pathCost.cost += 1;
                     }
 
-                    if (i > 0) {
-                        var prev = path[i - 1];
+                    pathCost.traversable = true;
 
-                        var delta = current - prev;
+                    return pathCost;
+                });
+
+                if (path != null) {
+                    for (int i = 0; i < path.Count; i++) {
+                        var current = path[i];
+
+                        if (grid[floor][current] == CellType.None) {
+                            grid[floor][current] = CellType.Hallway;
+                        }
+
+                        if (i > 0) {
+                            var prev = path[i - 1];
+
+                            var delta = current - prev;
+                        }
                     }
-                }
 
-                foreach (var pos in path) {
-                    if (grid[pos] == CellType.Hallway) {
-                        PlaceHallway(pos);
+                    foreach (var pos in path) {
+                        if (grid[floor][pos] == CellType.Hallway) {
+                            PlaceHallway(pos);
+                        }
                     }
                 }
             }

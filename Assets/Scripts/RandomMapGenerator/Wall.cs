@@ -14,12 +14,23 @@ public class Wall : MonoBehaviour
     [Header("Objects Settings")]
     [SerializeField] private GameObject wallObject;
     [SerializeField] private GameObject doorObject;
+    private Vector3Int position;
+    
 
     private void OnValidate()
     {
         room = GetComponentInParent<Room>();
     }
-    
+
+    public void SetPosition(Vector3Int position)
+    {
+        this.position = position;
+    }
+
+    public Vector3Int GetDoorPosition()
+    {
+        return gridPosition + position;
+    }
     
     private void OnDrawGizmosSelected()
     {
