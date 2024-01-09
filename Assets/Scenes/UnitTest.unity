@@ -202,18 +202,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefabs:
   - {fileID: 4077151047374910015, guid: 7f9d07b4aefb77c48be1299a1d3d10b4, type: 3}
+  - {fileID: 12620114346801647, guid: cfdc72a891265364c84cfcf784851a1e, type: 3}
+  - {fileID: 5325713811552466198, guid: 4ebc1609d473f3b498a51d9ad30eb70e, type: 3}
+  - {fileID: 857899521174112437, guid: 458598f9691e27147ae481370ef2cbac, type: 3}
+  - {fileID: 4646118612051724787, guid: e4257befc2c582b41ad98e2a1e376695, type: 3}
+  - {fileID: 5980566946629540167, guid: 0bba0ee7538582f4ea943f784d6ab49a, type: 3}
+  - {fileID: 2804741333016175922, guid: b6542effb1aab5c448156516f6ca8fd6, type: 3}
+  - {fileID: 5717238034634899337, guid: 31b7d42d2373539478f40b29fd6341c6, type: 3}
+  - {fileID: 8788530741304535261, guid: 6b3258f614fddf84e8381367c80e6adc, type: 3}
+  - {fileID: 2429740150482012967, guid: 4006275f3cfb96545aaf6326ad51283b, type: 3}
+  - {fileID: 8191069422954867059, guid: 236d57e9cf3b73f4fb7c66b86abf9470, type: 3}
+  - {fileID: 4545550193773572487, guid: f4dcb13571608544393e4d72977f053b, type: 3}
+  - {fileID: 7030415626176264250, guid: 03096676bac31de48944f86497674cfb, type: 3}
+  - {fileID: 2010204280007283842, guid: 0e9814f8428c9814e899713d73b3c069, type: 3}
+  - {fileID: 2278493529958000892, guid: ca58f86250a3ffb498f0c737eaf44c3a, type: 3}
+  - {fileID: 5162145609286885303, guid: 5f9205b2f5c7c734b91e7b7ce5e03357, type: 3}
+  - {fileID: 7137991767452704850, guid: 0be1ef9d0e858dc4c806063e05866936, type: 3}
   stairPrefabs:
   - {fileID: 8772441598458615846, guid: d8697dc5ddc8c4242b179e9289e9a2f8, type: 3}
+  hallwayPrefab: {fileID: 7771602080324474731, guid: 8e07e0d0210726548b723edb9d656b91,
+    type: 3}
   cellSize: {x: 12, y: 5, z: 12}
   seed: 0
-  floorCount: 4
-  gridSize: {x: 10, y: 10}
-  roomCount: 8
-  cubePrefab: {fileID: 1759537800499196931, guid: e842baffa6c1d9a459ae8bc209bef8a0,
-    type: 3}
-  redMaterial: {fileID: 2100000, guid: f65e60b4c62f9174093b847058bfed59, type: 2}
-  blueMaterial: {fileID: 2100000, guid: f0166665df0686f4f880537184496e4f, type: 2}
-  minStairCount: 02000000020000000200000000000000
+  tryMaxCount: 1000
+  floorCount: 3
+  gridSize: {x: 8, y: 8}
+  roomCount: 6
+  minStairCount: 020000000200000000000000
   rooms: []
   stairs: []
 --- !u!4 &569622359

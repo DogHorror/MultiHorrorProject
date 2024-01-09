@@ -28,8 +28,7 @@ public class Room : MonoBehaviour
     public List<GameObject> emissiveObjects = new List<GameObject>();
 
     [Header("Runtime Settings")] 
-    [SerializeField] private int[] minDoorCount;
-    [SerializeField] private int[] maxDoorCount;
+    [SerializeField] private Vector2Int[] doorCountRange;
 
     private List<Vector3Int> doors = new List<Vector3Int>();
     [SerializeField] private Grid3D<Wall> wallGrid;
@@ -42,18 +41,22 @@ public class Room : MonoBehaviour
     [SerializeField] private Vector3Int position;
     private RotAngle rotAngle;
 
-    public Wall[] GetDoorPosition()
+    public List<Wall> GetDoorPosition()
     {
-        Wall[] doorPositions = new Wall[doors.Count];
-        for (int i = 0; i < doors.Count; i++)
+        List<Wall> ret = new List<Wall>();
+        foreach (Vector3Int door in doors)
         {
-            //doorPositions[i] = wallGrid[doors[i]];
+            foreach (Wall wall in walls)
+            {
+                if (door == wall.gridPosition)
+                {
+                    if(!ret.Contains(wall)) ret.Add(wall);
+                }
+            }
         }
-        
-        return walls;
+        Debug.Log("Room GetDoorPosition : " + ret.Count);
+        return ret;
     }
-
-
 
     public void Init(Vector3Int mapSize, Vector3Int position, RotAngle rotAngle, int seed)
     {
@@ -65,11 +68,11 @@ public class Room : MonoBehaviour
 
         walls = GetComponentsInChildren<Wall>(true);
         
-        //wallGrid = new Grid3D<Wall>(new Vector3Int(scale.x + 2, scale.y, scale.z + 2), Vector3Int.zero);
-
         for (int i = 0; i < walls.Length; i++)
         {
             //wallGrid[walls[i].gridPosition] = walls[i];
+            walls[i].room = this;
+            walls[i].ActiveWall();
             walls[i].SetPosition(position);
         }
         
@@ -89,13 +92,13 @@ public class Room : MonoBehaviour
         }
         for (int floor = 0; floor < tempDoors.Length; floor++)
         {
-            int maxCount = (maxDoorCount[floor] == -1) ? doorSpawnPoints.Count : maxDoorCount[floor];
-            int doorCount = random.Next(1, maxCount);
+            int doorCount = random.Next(doorCountRange[floor].x, doorCountRange[floor].y);
 
             for (int i = 0; i < doorCount; i++)
             {
                 var index = random.Next(0, tempDoors[floor].Count);
                 doors.Add(tempDoors[floor][index]);
+                doorSpawnPoints.Remove(tempDoors[floor][index]);
             }
         }
     }

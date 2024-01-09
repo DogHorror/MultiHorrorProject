@@ -34,6 +34,7 @@ public class Grid2D<T> {
 
     public T this[Vector2Int pos] {
         get {
+            Debug.Log(pos);
             pos += Offset;
             return data[GetIndex(pos)];
         }

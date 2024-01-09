@@ -1059,13 +1059,14 @@ MonoBehaviour:
   - {fileID: 2151384821193038590}
   emissiveObjects:
   - {fileID: 7537902707895740541}
-  minDoorCount: 00000000
-  maxDoorCount: 00000000000000000000000000000000
+  doorCountRange:
+  - {x: 1, y: 4}
   walls:
   - {fileID: 2604881510078203391}
   - {fileID: 2444006016847420376}
   - {fileID: 1290504011137266395}
   - {fileID: 263809409280965151}
+  position: {x: 0, y: 0, z: 0}
 --- !u!1 &992393649933787484
 GameObject:
   m_ObjectHideFlags: 0

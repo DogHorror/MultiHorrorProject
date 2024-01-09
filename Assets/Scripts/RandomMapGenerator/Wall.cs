@@ -28,6 +28,18 @@ public class Wall : MonoBehaviour
         room = GetComponentInParent<Room>();
     }
 
+    public void ActiveDoor()
+    {
+        wallObject.SetActive(false);
+        doorObject.SetActive(true);
+    }
+    
+    public void ActiveWall()
+    {
+        wallObject.SetActive(true);
+        doorObject.SetActive(false);
+    }
+
     public void SetPosition(Vector3Int position)
     {
         this.position = position;

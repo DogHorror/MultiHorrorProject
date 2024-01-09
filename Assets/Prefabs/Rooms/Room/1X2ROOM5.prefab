@@ -7632,8 +7632,8 @@ MonoBehaviour:
   - {fileID: 492502453073498405}
   - {fileID: 6330022450220978253}
   - {fileID: 6855072900448381892}
-  minDoorCount: 00000000
-  maxDoorCount: 000000000000000000000000
+  doorCountRange:
+  - {x: 1, y: 3}
   walls:
   - {fileID: 3427473314526493086}
   - {fileID: 4802482460932428760}
@@ -7641,6 +7641,7 @@ MonoBehaviour:
   - {fileID: 7619209666036668009}
   - {fileID: 829981293071171476}
   - {fileID: 921498814252567331}
+  position: {x: 0, y: 0, z: 0}
 --- !u!1 &2454018243241668811
 GameObject:
   m_ObjectHideFlags: 0

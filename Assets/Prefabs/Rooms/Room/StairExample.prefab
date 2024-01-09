@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1905791228913887106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174133978282332597}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1174133978282332597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905791228913887106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2093113009464353111}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1977664020348839839
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +189,8 @@ Transform:
   m_LocalPosition: {x: 6, y: 5, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1174133978282332597}
   m_Father: {fileID: 4717935125629632725}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,8 +209,39 @@ MonoBehaviour:
   room: {fileID: 0}
   floor: 1
   gridPosition: {x: 0, y: 1, z: 1}
-  wallObject: {fileID: 0}
-  doorObject: {fileID: 0}
+  wallObject: {fileID: 1905791228913887106}
+  doorObject: {fileID: 1905791228913887106}
+--- !u!1 &7925777369877226476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5098267807852520977}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5098267807852520977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925777369877226476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 309716372848416146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8585789435561872577
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +270,8 @@ Transform:
   m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5098267807852520977}
   m_Father: {fileID: 4717935125629632725}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,8 +290,8 @@ MonoBehaviour:
   room: {fileID: 0}
   floor: 0
   gridPosition: {x: 0, y: 0, z: -1}
-  wallObject: {fileID: 0}
-  doorObject: {fileID: 0}
+  wallObject: {fileID: 7925777369877226476}
+  doorObject: {fileID: 7925777369877226476}
 --- !u!1 &8772441598458615846
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,8 +344,10 @@ MonoBehaviour:
   - {x: 0, y: 1, z: 1}
   lights: []
   emissiveObjects: []
-  minDoorCount: 0100000001000000
-  maxDoorCount: 0100000001000000
+  doorCountRange:
+  - {x: 1, y: 1}
+  - {x: 1, y: 1}
   walls:
   - {fileID: 3600547983534634027}
   - {fileID: 8607636010007364722}
+  position: {x: 0, y: 0, z: 0}
