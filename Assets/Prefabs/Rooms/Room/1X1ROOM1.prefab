@@ -3095,7 +3095,7 @@ MonoBehaviour:
   emissiveObjects:
   - {fileID: 8765769086797160869}
   minDoorCount: 01000000
-  maxDoorCount: 04000000
+  maxDoorCount: 04000000040000000400000004000000
   walls:
   - {fileID: 3194597144117760573}
   - {fileID: 4890707749082797875}
