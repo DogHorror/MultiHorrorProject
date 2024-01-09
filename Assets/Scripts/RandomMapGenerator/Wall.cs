@@ -34,6 +34,6 @@ public class Wall : MonoBehaviour
     
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(room.transform.position + new Vector3(gridPosition.x * 12f + 6f, gridPosition.y * 5f + 2.5f, gridPosition.z * 12f + 6f), 2f);
+        Gizmos.DrawWireSphere(room.transform.position + new Vector3(gridPosition.x * 12f + 6f, gridPosition.y * 5f + 2.5f, gridPosition.z * 12f + 6f), 1f);
     }
 }

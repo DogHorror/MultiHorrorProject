@@ -15,15 +15,17 @@ public class OfficeMapGenerator : MonoBehaviour
         Hallway
     }
 
-    [Header("Room Settings")] 
+    [Header("Prefabs Settings")] 
     [SerializeField] private List<GameObject> roomPrefabs;
     [SerializeField] private List<GameObject> stairPrefabs;
     
+    [Header("Room Settings")] 
+    [SerializeField] private Vector3 cellSize;
+    [Header("Generator Settings")] 
     [SerializeField] private int seed;
     [SerializeField] private int floorCount;
     [SerializeField] private Vector2Int gridSize;
     [SerializeField] private int roomCount;
-    [SerializeField] private Vector2Int roomMaxSize;
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private Material redMaterial;
     [SerializeField] private Material blueMaterial;
@@ -128,11 +130,7 @@ public class OfficeMapGenerator : MonoBehaviour
                         }
                     }
                 }
-                
-                GameObject go = Instantiate(roomPrefabs[roomIndex], new Vector3(location.x, location.y, location.z), Quaternion.identity);
-                Room goRoom = go.GetComponent<Room>();
-                rooms.Add(goRoom);
-                goRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), location, rotAngle, seed);
+                PlaceRoom(roomIndex, location, rotAngle);
             }
         }
     }
@@ -193,11 +191,8 @@ public class OfficeMapGenerator : MonoBehaviour
                         }
                     }
                 }
-                
-                GameObject go = Instantiate(stairPrefabs[stairIndex], new Vector3(location.x, floor, location.y), Quaternion.identity);
-                Room stairRoom = go.GetComponent<Room>();
-                stairs.Add(stairRoom);
-                stairRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), new Vector3Int(location.x, floor, location.y), rotAngle, seed);
+
+                PlaceStair(stairIndex, new Vector3Int(location.x, floor, location.y), rotAngle);
             }
         }
     }
@@ -336,8 +331,19 @@ public class OfficeMapGenerator : MonoBehaviour
         go.GetComponent<MeshRenderer>().material = material;
     }
 
-    void PlaceRoom(Vector2Int location, Vector2Int size) {
-        PlaceCube(location, size, redMaterial);
+    void PlaceRoom(int roomIndex, Vector3Int position, RotAngle rotAngle) {
+        GameObject go = Instantiate(roomPrefabs[roomIndex], Vector3.Scale(cellSize, position), Quaternion.identity);
+        Room room = go.GetComponent<Room>();
+        rooms.Add(room);
+        room.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), position, rotAngle, seed);
+    }
+    
+    
+    void PlaceStair(int stairIndex, Vector3Int position, RotAngle rotAngle) {
+        GameObject go = Instantiate(stairPrefabs[stairIndex], Vector3.Scale(cellSize, position), Quaternion.identity);
+        Room stairRoom = go.GetComponent<Room>();
+        stairs.Add(stairRoom);
+        stairRoom.Init(new Vector3Int(gridSize.x, floorCount, gridSize.y), position, rotAngle, seed);
     }
 
     void PlaceHallway(Vector2Int location) {

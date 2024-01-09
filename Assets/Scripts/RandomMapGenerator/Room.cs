@@ -21,19 +21,21 @@ public class Room : MonoBehaviour
     public Vector3Int scale;
     public List<Vector3Int> doorSpawnPoints = new List<Vector3Int>();
 
-    [Space(10f)]
+    [Space(20f)]
     public List<GameObject> lights = new List<GameObject>();
     public List<GameObject> emissiveObjects = new List<GameObject>();
 
     [Header("Runtime Settings")] 
-    public int seed;
-    [SerializeField] private int minDoorCount = 1;
-    [SerializeField] private int maxDoorCount = -1;
+    [SerializeField] private int[] minDoorCount;
+    [SerializeField] private int[] maxDoorCount;
 
-    private Random random;
-    [SerializeField] private List<Vector3Int> doors = new List<Vector3Int>();
+    private List<Vector3Int> doors = new List<Vector3Int>();
     [SerializeField] private Grid3D<Wall> wallGrid;
     [SerializeField] private Wall[] walls;
+    
+    
+    private Random random;
+    private int seed;
     private Vector3Int mapSize;
     private Vector3Int position;
     private RotAngle rotAngle;
@@ -73,14 +75,17 @@ public class Room : MonoBehaviour
     
     public void SetRandomDoor()
     {
-        int maxCount = (maxDoorCount == -1) ? doorSpawnPoints.Count : maxDoorCount;
-        int doorCount = random.Next(1, maxCount);
-
-        for (int i = 0; i < doorCount; i++)
+        for (int floor = 0; floor < scale.y; floor++)
         {
-            var index = random.Next(0, doorSpawnPoints.Count);
-            doors.Add(doorSpawnPoints[index]);
-            doorSpawnPoints.RemoveAt(index);
+            int maxCount = (maxDoorCount[floor] == -1) ? doorSpawnPoints.Count : maxDoorCount[floor];
+            int doorCount = random.Next(1, maxCount);
+
+            for (int i = 0; i < doorCount; i++)
+            {
+                var index = random.Next(0, doorSpawnPoints.Count);
+                doors.Add(doorSpawnPoints[index]);
+                doorSpawnPoints.RemoveAt(index);
+            }
         }
     }
     
